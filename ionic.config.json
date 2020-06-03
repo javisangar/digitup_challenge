@@ -1,0 +1,7 @@
+{
+  "name": "digitup_challenge",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
