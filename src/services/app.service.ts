@@ -15,8 +15,8 @@ export class AppService {
     constructor(private httpClient: HttpClient) {
     }
 
-    getNews(): Observable<any> {
-        return this.httpClient.get(`${API}`);
+    getNews(offset = 0): Observable<any> {
+        return this.httpClient.get(`${API}&pageSize=10`);
     }
 
     getSpecificNew(param) {
