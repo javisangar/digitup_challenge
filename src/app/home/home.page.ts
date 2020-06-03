@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AppService } from '../../services/app.service';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +7,19 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  news: any;
 
-  constructor() {}
+  constructor(private appService: AppService) {
+    this.initializeApp();
+  }
+  initializeApp() {
+    this.getAppService();
+  }
+  getAppService() {
+    this.appService.getNews().subscribe(data => {
+      this.news = data.articles;
+      console.log(this.news[1].content);
+    });
+  }
 
 }
