@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>noticeDetail</ion-title>
+    <ion-title></ion-title>
     <ion-button color="primary" (click)="backPage()">
       <ion-icon name="caret-back-outline"></ion-icon>
     </ion-button>
@@ -10,15 +10,18 @@
 <ion-content>
 
   <ion-card>
+    <img src="{{new.urlToImage}}" *ngIf="new" />
     <ion-card-header>
-      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-      <ion-card-title>Card Title</ion-card-title>
+      <ion-card-subtitle *ngIf="new">{{new.author}} - {{new.source.name}}</ion-card-subtitle>
+      <ion-card-title *ngIf="new">{{new.title}}</ion-card-title>
     </ion-card-header>
 
-    <ion-card-content>
-      Keep close to Nature's heart... and break clear away, once in awhile,
-      and climb a mountain or spend a week in the woods. Wash your spirit clean.
+    <ion-card-content *ngIf="new">
+      {{new.description}}
     </ion-card-content>
+    <ion-input type="text" disabled *ngIf="new">{{new.url}}</ion-input>
+    <ion-button>Copy Link</ion-button>
+
   </ion-card>
 
   <ion-card>

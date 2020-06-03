@@ -17,7 +17,9 @@ export class NoticeDetailPage implements OnInit {
     this.activatedRoute.params.subscribe(res => {
       const param = res.myNew;
       this.appService.getSpecificNew(param).subscribe(data => {
-        console.log(data);
+        //console.log(data);
+        let obj = data;
+        this.new = obj['articles'][0];
       });
     })
 
@@ -26,5 +28,4 @@ export class NoticeDetailPage implements OnInit {
   backPage() {
     this._location.back();
   }
-
 }
