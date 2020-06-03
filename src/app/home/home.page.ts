@@ -18,7 +18,7 @@ export class HomePage {
   getAppService() {
     this.appService.getNews().subscribe(data => {
       this.news = data.articles;
-      console.log(this.news[1].content);
+      console.log(this.news);
     });
   }
 
