@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from "@angular/router";
+import { AppService } from '../../services/app.service';
 
 @Component({
   selector: 'app-notice-detail',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./notice-detail.page.scss'],
 })
 export class NoticeDetailPage implements OnInit {
+  new: any;
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute, private appService: AppService, ) { }
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe(res => {
+      const param = res.myNew;
+      this.appService.getSpecificNew(param).subscribe(data => {
+        console.log(data);
+      });
+    })
+
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AppService } from '../../services/app.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ import { AppService } from '../../services/app.service';
 export class HomePage {
   news: any;
 
-  constructor(private appService: AppService) {
+  constructor(private appService: AppService, private router: Router) {
     this.initializeApp();
   }
   initializeApp() {
@@ -20,6 +21,10 @@ export class HomePage {
       this.news = data.articles;
       console.log(this.news);
     });
+  }
+
+  seeNew(myNew) {
+    this.router.navigate(['notice-detail/', myNew.title]);
   }
 
 }

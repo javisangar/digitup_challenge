@@ -10,8 +10,9 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
-  },  {
-    path: 'notice-detail',
+  },
+  {
+    path: 'notice-detail/:myNew',
     loadChildren: () => import('./notice-detail/notice-detail.module').then( m => m.NoticeDetailPageModule)
   },
 

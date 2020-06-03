@@ -10,12 +10,17 @@ const API = environment.apiUrl;
 })
 export class AppService {
     news: any;
+    param: any;
 
     constructor(private httpClient: HttpClient) {
     }
 
     getNews(): Observable<any> {
         return this.httpClient.get(`${API}`);
+    }
+
+    getSpecificNew(param) {
+        return this.httpClient.get(`${API}&q=${param}`);
     }
 }
 
