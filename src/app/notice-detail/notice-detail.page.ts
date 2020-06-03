@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { AppService } from '../../services/app.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-notice-detail',
@@ -10,7 +11,7 @@ import { AppService } from '../../services/app.service';
 export class NoticeDetailPage implements OnInit {
   new: any;
 
-  constructor(private activatedRoute: ActivatedRoute, private appService: AppService, ) { }
+  constructor(private activatedRoute: ActivatedRoute, private appService: AppService, private _location: Location) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(res => {
@@ -20,6 +21,10 @@ export class NoticeDetailPage implements OnInit {
       });
     })
 
+  }
+
+  backPage() {
+    this._location.back();
   }
 
 }
