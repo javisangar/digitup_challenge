@@ -19,9 +19,8 @@
     <ion-card-content *ngIf="new">
       {{new.description}}
     </ion-card-content>
-    <ion-input type="text" disabled *ngIf="new">{{new.url}}</ion-input>
-    <ion-button>Copy Link</ion-button>
-
+    <ion-button *ngIf="new" color="medium" size="small" (click)="copyMessage(new)" value="click to copy">Copy URL
+    </ion-button>
   </ion-card>
 
   <ion-card>
