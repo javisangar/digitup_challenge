@@ -10,7 +10,8 @@
 
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Last News</ion-title>
+      <ion-title size="large" *ngIf="segmentModel === 'all'">Last News</ion-title>
+      <ion-title size="large" *ngIf="segmentModel === 'favorites'">My Favorite News</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -28,6 +29,9 @@
 
   <ion-card *ngIf="segmentModel === 'all'">
     <ion-card *ngFor="let new of news">
+      <ion-fab-button color="danger" size="small" (click)="toFavorites(new)">
+        <ion-icon name="heart-circle-outline"></ion-icon>
+      </ion-fab-button>
       <img src="{{new.urlToImage}}" />
       <ion-card-header>
         <ion-card-subtitle>{{new.author}} - {{new.source.name}}</ion-card-subtitle>
@@ -38,15 +42,19 @@
   </ion-card>
 
   <ion-card *ngIf="segmentModel === 'favorites'">
-    <ion-card-header>
-      <ion-card-subtitle>Segment Content</ion-card-subtitle>
-      <ion-card-title>Favorites</ion-card-title>
-    </ion-card-header>
-
-    <ion-card-content>
-      Keep close to Nature's heart... and break clear away, once in awhile,
-      and climb a mountain or spend a week in the woods. Wash your spirit clean.
-    </ion-card-content>
+    <h2 *ngIf="favorites == 0">You don't have any favorite 😢</h2>
+    <ion-card *ngFor="let favorite of favorites">
+      <ion-fab-button *ngIf="favorite" color="danger" size="small" (click)="deleteFromFavorites(favorite)">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-fab-button>
+      <img *ngIf="favorite" src="{{favorite.urlToImage}}" />
+      <ion-card-header>
+        <ion-card-subtitle *ngIf="favorite">{{favorite.author}} - {{favorite.source.name}}</ion-card-subtitle>
+        <ion-card-title *ngIf="favorite">{{favorite.title}}</ion-card-title>
+      </ion-card-header>
+      <ion-button color="primary" size="small" expand="block" (click)="seeNew(favorite)" *ngIf="favorite">Read Article
+      </ion-button>
+    </ion-card>
   </ion-card>
 
   <ion-infinite-scroll threshold="10px" (ionInfinite)="getAppService(true, $event)">

@@ -13,6 +13,7 @@ export class HomePage {
   news = [];
   offset = 0;
   segmentModel = "all";
+  favorites = [];
 
   constructor(private appService: AppService, private router: Router) {
     this.initializeApp();
@@ -46,10 +47,20 @@ export class HomePage {
     this.router.navigate(['notice-detail/', myNew.title]);
   }
 
-  segmentChanged(event){
+  segmentChanged(event) {
     console.log(this.segmentModel);
-    
     console.log(event);
+  }
+  toFavorites(article) {
+    this.favorites.push(article);
+  }
+
+  deleteFromFavorites(favorite) {
+    for (let i = 0; i < this.favorites.length; i++) {
+      if (favorite.title == this.favorites[i].title) {
+        this.favorites.splice(i, 1);
+      }
+    }
   }
 
 }
