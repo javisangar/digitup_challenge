@@ -12,6 +12,7 @@ export class HomePage {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   news = [];
   offset = 0;
+  segmentModel = "all";
 
   constructor(private appService: AppService, private router: Router) {
     this.initializeApp();
@@ -43,6 +44,12 @@ export class HomePage {
 
   seeNew(myNew) {
     this.router.navigate(['notice-detail/', myNew.title]);
+  }
+
+  segmentChanged(event){
+    console.log(this.segmentModel);
+    
+    console.log(event);
   }
 
 }

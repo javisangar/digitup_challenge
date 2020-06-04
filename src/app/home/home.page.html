@@ -14,13 +14,39 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-card *ngFor="let new of news">
-    <img src="{{new.urlToImage}}" />
+  <ion-segment value="all" color="tertiary" scrollable="true" mode="ios" [(ngModel)]="segmentModel"
+    (ionChange)="segmentChanged($event)">
+
+    <ion-segment-button value="all">
+      <ion-label>All</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="favorites">
+      <ion-label>Favorites</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-card *ngIf="segmentModel === 'all'">
+    <ion-card *ngFor="let new of news">
+      <img src="{{new.urlToImage}}" />
+      <ion-card-header>
+        <ion-card-subtitle>{{new.author}} - {{new.source.name}}</ion-card-subtitle>
+        <ion-card-title>{{new.title}}</ion-card-title>
+      </ion-card-header>
+      <ion-button color="primary" size="small" expand="block" (click)="seeNew(new)">Read Article</ion-button>
+    </ion-card>
+  </ion-card>
+
+  <ion-card *ngIf="segmentModel === 'favorites'">
     <ion-card-header>
-      <ion-card-subtitle>{{new.author}} - {{new.source.name}}</ion-card-subtitle>
-      <ion-card-title>{{new.title}}</ion-card-title>
+      <ion-card-subtitle>Segment Content</ion-card-subtitle>
+      <ion-card-title>Favorites</ion-card-title>
     </ion-card-header>
-    <ion-button color="primary" size="small" expand="block" (click)="seeNew(new)">Read Article</ion-button>
+
+    <ion-card-content>
+      Keep close to Nature's heart... and break clear away, once in awhile,
+      and climb a mountain or spend a week in the woods. Wash your spirit clean.
+    </ion-card-content>
   </ion-card>
 
   <ion-infinite-scroll threshold="10px" (ionInfinite)="getAppService(true, $event)">
