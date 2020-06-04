@@ -27,7 +27,7 @@
     </ion-segment-button>
   </ion-segment>
 
-  <ion-card *ngIf="segmentModel === 'all'">
+  <ion-card class="article_card" *ngIf="segmentModel === 'all'">
     <ion-card *ngFor="let new of news">
       <ion-fab-button color="danger" size="small" (click)="toFavorites(new)">
         <ion-icon name="heart-circle-outline"></ion-icon>
@@ -42,7 +42,7 @@
     </ion-card>
   </ion-card>
 
-  <ion-card *ngIf="segmentModel === 'favorites'">
+  <ion-card *ngIf="segmentModel === 'favorites'" class="article_card">
     <h2 *ngIf="favorites == 0">You don't have any favorite 😢</h2>
     <ion-card *ngFor="let favorite of favorites">
       <ion-fab-button *ngIf="favorite" color="danger" size="small" (click)="deleteFromFavorites(favorite)">
