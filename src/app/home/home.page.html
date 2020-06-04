@@ -33,6 +33,7 @@
         <ion-icon name="heart-circle-outline"></ion-icon>
       </ion-fab-button>
       <img src="{{new.urlToImage}}" />
+      <ion-button color="medium" size="small" (click)="copyMessage(new)" value="click to copy">Copy URL</ion-button>
       <ion-card-header>
         <ion-card-subtitle>{{new.author}} - {{new.source.name}}</ion-card-subtitle>
         <ion-card-title>{{new.title}}</ion-card-title>
@@ -48,6 +49,8 @@
         <ion-icon name="close-circle-outline"></ion-icon>
       </ion-fab-button>
       <img *ngIf="favorite" src="{{favorite.urlToImage}}" />
+      <ion-button color="medium" size="small" (click)="copyMessage(favorite)" value="click to copy">Copy URL
+      </ion-button>
       <ion-card-header>
         <ion-card-subtitle *ngIf="favorite">{{favorite.author}} - {{favorite.source.name}}</ion-card-subtitle>
         <ion-card-title *ngIf="favorite">{{favorite.title}}</ion-card-title>

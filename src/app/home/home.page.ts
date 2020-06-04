@@ -62,5 +62,20 @@ export class HomePage {
       }
     }
   }
+  copyMessage(myNew) {
+    const val = myNew.url;
+    let selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = val;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+    console.log('Url copied to clipboard');
+  }
 
 }
